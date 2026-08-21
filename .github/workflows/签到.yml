@@ -2,7 +2,7 @@ name: 签到
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '10 17 * * *'
 permissions:
   contents: read
 jobs:
@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 150
     steps:
-      - name: 随机延迟（仅定时触发，落在北京时间 08:00-10:00）
+      - name: 随机延迟（仅定时触发，落在北京时间 01:10-02:30）
         if: ${{ github.event_name == 'schedule' }}
         run: |
-          DELAY=$(( RANDOM % 121 ))
-          echo "随机延迟 ${DELAY} 分钟，预计北京时间 08:00 后约 ${DELAY} 分触发签到"
+          DELAY=$(( RANDOM % 81 ))
+          echo "随机延迟 ${DELAY} 分钟，预计北京时间 01:10 后约 ${DELAY} 分触发签到"
           sleep ${DELAY}m
 
       - name: 检出仓库
